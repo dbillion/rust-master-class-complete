@@ -1,50 +1,37 @@
 sequenceDiagram
-    title Chapter 24: Block Mining Sequence (Proof of Work)
+    participant Miner
+    participant Blockchain
+    participant Block
+    participant Hash
+    participant Latest
     
-    participant miner as Miner
-    participant blockchain as Blockchain
-    participant block as Block (new)
-    participant hash_util as HashUtil
-    participant latest as Latest Block
+    Miner->>Blockchain: add_block("data")
+    activate Blockchain
+    Blockchain->>Latest: get_latest()
+    Latest-->>Blockchain: hash: "abc123"
     
-    miner->>blockchain: add_block("transaction data")
-    activate blockchain
-    blockchain->>latest: get_latest()
-    latest-->>blockchain: &Block (hash: "abc123")
+    Blockchain->>Block: new(index, data, prev)
+    activate Block
+    Block->>Block: index = len()
+    Block->>Block: timestamp = now()
+    Block->>Block: prev_hash = "abc123"
+    Block->>Block: nonce = 0
     
-    blockchain->>block: Block::new(index, data, prev_hash)
-    activate block
-    block->>block: index = chain.len()
-    block->>block: timestamp = now()
-    block->>block: previous_hash = "abc123"
-    block->>block: nonce = 0
-    block-->>blockchain: New Block (unmined)
-    deactivate block
-    
-    blockchain->>block: mine_block(difficulty: 4)
-    
-    loop Mining Loop (Brute Force)
-        block->>hash_util: calculate_hash()
-        activate hash_util
-        hash_util->>hash_util: SHA256(index + timestamp + data + prev_hash + nonce)
-        hash_util-->>block: hash: "xyz789..."
-        deactivate hash_util
-        
-        block->>block: Check: hash.starts_with("0000")?
-        
-        alt Hash valid (starts with 0000)
-            block->>block: Mining complete!
-            block-->>blockchain: Mined Block
+    loop Mining (Brute Force)
+        Block->>Hash: SHA256(data + nonce)
+        activate Hash
+        Hash-->>Block: "xyz789..."
+        deactivate Hash
+        Block->>Block: Check: starts with "0000"?
+        alt Hash valid
+            Block-->>Blockchain: Mined!
         else Hash invalid
-            block->>block: nonce += 1
-            block-->>block: Try again
+            Block->>Block: nonce += 1
         end
     end
     
-    block-->>blockchain: Block with valid hash
-    deactivate block
+    deactivate Block
+    Blockchain->>Blockchain: push to Vec
+    Blockchain-->>Miner: Success
     
-    blockchain->>blockchain: push block to Vec<Block>
-    blockchain-->>miner: Block added successfully
-    
-    Note over miner,latest: Difficulty = number of leading zeros\nHigher difficulty = harder to mine
+    Note over Miner,Latest: Difficulty = leading zeros
