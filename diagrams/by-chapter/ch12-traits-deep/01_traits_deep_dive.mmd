@@ -1,0 +1,36 @@
+classDiagram
+    title Chapter 12: Deep Dive into Traits
+    
+    class Trait {
+        <<trait>>
+        +method1()
+        +method2() default impl
+        +associated_type
+    }
+    
+    class Struct {
+        +field1: Type
+        +field2: Type
+    }
+    
+    Trait <|.. Struct : implements
+    
+    class TraitBounds {
+        +fn generic~T: Trait~(item: T)
+    }
+    
+    class AssociatedTypes {
+        +trait Container { type Item }
+    }
+    
+    class SuperTraits {
+        +trait Child: Parent
+    }
+    
+    class TraitObjects {
+        +Box~dyn Trait~
+        +dyn Trait
+    }
+    
+    Note over Trait: Shared behavior\nDefault implementations
+    Note over TraitObjects: Dynamic dispatch\nRuntime polymorphism

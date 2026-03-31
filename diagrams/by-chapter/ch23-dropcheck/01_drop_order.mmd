@@ -1,0 +1,30 @@
+sequenceDiagram
+    title Chapter 23: Drop Check and Drop Order
+    
+    participant Main as Main Scope
+    participant Var1 as Variable A
+    participant Var2 as Variable B
+    participant Var3 as Variable C
+    
+    Main->>Var1: let a = ...
+    activate Var1
+    Main->>Var2: let b = ...
+    activate Var2
+    Main->>Var3: let c = ...
+    activate Var3
+    
+    Main->>Main: End of scope
+    
+    Main->>Var3: drop(c)
+    Var3-->>Main: Drop called
+    deactivate Var3
+    
+    Main->>Var2: drop(b)
+    Var2-->>Main: Drop called
+    deactivate Var2
+    
+    Main->>Var1: drop(a)
+    Var1-->>Main: Drop called
+    deactivate Var1
+    
+    Note over Main,Var1: LIFO order\nLast created = First dropped

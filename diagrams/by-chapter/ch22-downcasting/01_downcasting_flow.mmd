@@ -1,0 +1,24 @@
+sequenceDiagram
+    title Chapter 22: Downcasting Trait Objects
+    
+    participant Code as Code
+    participant TraitObj as Box~dyn Trait~
+    participant Concrete as Concrete Type
+    participant Any as Any trait
+    
+    Code->>TraitObj: Create trait object
+    TraitObj-->>Code: Box~dyn Trait~
+    
+    Code->>TraitObj: downcast_ref:::SpecificType()
+    TraitObj->>Any: Check type_id
+    Any-->>TraitObj: Match?
+    
+    alt Type matches
+        TraitObj-->>Code: Some(&SpecificType)
+        Code->>Concrete: Use concrete methods
+    else Type doesn't match
+        TraitObj-->>Code: None
+        Code->>Code: Try other type
+    end
+    
+    Note over Code,Any: Requires Any trait\nRuntime type checking

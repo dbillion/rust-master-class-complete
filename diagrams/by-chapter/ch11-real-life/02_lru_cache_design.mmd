@@ -1,0 +1,29 @@
+classDiagram
+    title Chapter 11: LRU Cache Implementation
+    
+    class LRUCache~K, V~ {
+        -capacity: usize
+        -cache: HashMap~K, V~
+        -order: VecDeque~K~
+        +new(capacity) LRUCache
+        +get(key) Option~&V~
+        +put(key, value)
+        +remove_lru() Option~V~
+    }
+    
+    class HashMap~K, V~ {
+        +insert()
+        +get()
+        +remove()
+    }
+    
+    class VecDeque~K~ {
+        +push_front()
+        +pop_back()
+        +remove()
+    }
+    
+    LRUCache --> HashMap : uses for storage
+    LRUCache --> VecDeque : uses for order
+    
+    Note over LRUCache: O(1) get/put\nEvicts least recently used

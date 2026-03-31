@@ -1,0 +1,20 @@
+flowchart TD
+    title Chapter 18: References Deep Dive
+    
+    Start([Value]) --> RefType{Reference Type}
+    
+    RefType --> Immutable[&T Immutable]
+    RefType --> Mutable[&mut T Mutable]
+    RefType --> Raw[*const T *mut T]
+    
+    Immutable --> Multi[Multiple allowed]
+    Mutable --> Single[Only one at a time]
+    Raw --> Unsafe[Requires unsafe]
+    
+    Multi --> Read[Read-only access]
+    Single --> Write[Read-write access]
+    Unsafe --> Manual[Manual safety]
+    
+    Read --> End([End])
+    Write --> End
+    Manual --> End

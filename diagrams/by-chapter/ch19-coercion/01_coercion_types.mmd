@@ -1,0 +1,30 @@
+classDiagram
+    title Chapter 19: Type Coercion
+    
+    class CoercionTypes {
+        &T to &U
+        &mut T to &T
+        T to dyn Trait
+        &T to &dyn Trait
+        Deref coercion
+    }
+    
+    class Deref {
+        +Deref trait
+        +DerefMut trait
+        +Box~T~ to &T
+        +String to &str
+        +Vec~T~ to &[T]
+    }
+    
+    class CoercionSites {
+        Function arguments
+        Method receivers
+        Let statements
+        Return values
+    }
+    
+    CoercionTypes --> Deref : Uses Deref trait
+    CoercionSites --> CoercionTypes : Where coercion happens
+    
+    Note over Deref: Automatic dereference\nSmart pointer support

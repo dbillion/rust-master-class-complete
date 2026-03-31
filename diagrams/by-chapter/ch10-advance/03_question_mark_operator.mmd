@@ -1,0 +1,25 @@
+classDiagram
+    title Chapter 10: Question Mark Operator
+    
+    class Result~T, E~ {
+        Ok(T)
+        Err(E)
+    }
+    
+    class Option~T~ {
+        Some(T)
+        None
+    }
+    
+    class Function {
+        +read_file() Result
+        +parse() Result
+        +process() Result
+    }
+    
+    Result~T, E~ <|-- Ok : variant
+    Result~T, E~ <|-- Err : variant
+    Option~T~ <|-- Some : variant
+    Option~T~ <|-- None : variant
+    
+    Note over Function: Uses ? operator\nfor error propagation

@@ -1,0 +1,22 @@
+flowchart LR
+    title Chapter 13: Efficient Programming
+    
+    subgraph BuilderPattern[Builder Pattern]
+        Builder --> Build --> Result
+    end
+    
+    subgraph Iterators[Iterator Efficiency]
+        Lazy --> Adapter --> Consume
+    end
+    
+    subgraph StringOps[String Operations]
+        PushStr --> Format --> Join
+    end
+    
+    subgraph Memory[Memory Efficiency]
+        Stack --> Heap --> Pool
+    end
+    
+    BuilderPattern --> Memory
+    Iterators --> Memory
+    StringOps --> Memory

@@ -1,0 +1,32 @@
+classDiagram
+    title Chapter 16: Sized vs Unsized Types
+    
+    class SizedTypes {
+        <<Sized>>
+        i32, f64
+        String
+        Vec~T~
+        Structs
+        Arrays~N~
+    }
+    
+    class UnsizedTypes {
+        <<~Sized>>
+        str
+        [T]
+        dyn Trait
+        Slice~T~
+    }
+    
+    class References {
+        &str
+        &[T]
+        Box~dyn Trait~
+        Rc~dyn Trait~
+    }
+    
+    SizedTypes --> References : Can be on stack
+    UnsizedTypes --> References : Must be behind pointer
+    
+    Note over SizedTypes: Known size at compile\nStored on stack
+    Note over UnsizedTypes: Dynamic size\nMust use &T, Box, Rc

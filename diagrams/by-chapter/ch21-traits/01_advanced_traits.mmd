@@ -1,0 +1,33 @@
+classDiagram
+    title Chapter 21: Advanced Traits
+    
+    class OrphanRule {
+        Implement for your types
+        Foreign crate types
+        Newtype pattern
+        Wrapper types
+    }
+    
+    class TraitObjects {
+        Box~dyn Trait~
+        &dyn Trait
+        Rc~dyn Trait~
+        Vtable dispatch
+    }
+    
+    class SealedTraits {
+        Private supertrait
+        Prevent impl
+        Control API
+    }
+    
+    class OperatorOverloading {
+        Add, Sub, Mul, Div
+        PartialEq, Eq
+        PartialOrd, Ord
+        Display, Debug
+    }
+    
+    OrphanRule --> TraitObjects : Workaround for foreign types
+    SealedTraits --> OrphanRule : Control who can implement
+    OperatorOverloading --> TraitObjects : Traits for operators

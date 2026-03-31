@@ -1,0 +1,27 @@
+classDiagram
+    title Chapter 20: Lifetimes Deep Dive
+    
+    class LifetimeAnnotations {
+        &'a T
+        &'a mut T
+        fn foo~'a~(&'a T)
+        Struct~'a~ { field: &'a T }
+    }
+    
+    class LifetimeElision {
+        Input lifetime
+        Output lifetime
+        Self lifetime
+        Compiler infers
+    }
+    
+    class LifetimeBounds {
+        T: 'a
+        &'a T: 'b
+        where T: 'a
+    }
+    
+    LifetimeAnnotations --> LifetimeElision : Compiler simplifies
+    LifetimeBounds --> LifetimeAnnotations : Constrains lifetimes
+    
+    Note over LifetimeAnnotations: Prevents dangling references\nEnsures reference validity

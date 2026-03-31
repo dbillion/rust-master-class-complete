@@ -1,0 +1,22 @@
+flowchart TD
+    title Chapter 17: Error Handling Strategies
+    
+    Start([Operation]) --> Result{Result~T,E~}
+    
+    Result -->|Ok| Success[Success Path]
+    Result -->|Err| Handle{Handle Error}
+    
+    Handle --> Match[match statement]
+    Handle --> IfLet[if let Err]
+    Handle --> Question[? operator]
+    Handle --> Unwrap[unwrap/expect]
+    
+    Match --> HandleErr[Handle gracefully]
+    IfLet --> HandleErr
+    Question --> Propagate[Propagate up]
+    Unwrap --> Panic[Panic on error]
+    
+    HandleErr --> End([Continue])
+    Propagate --> End
+    Panic --> Crash([Crash])
+    Success --> End

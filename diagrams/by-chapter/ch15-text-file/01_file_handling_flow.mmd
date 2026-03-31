@@ -1,0 +1,23 @@
+sequenceDiagram
+    title Chapter 15: File Handling Flow
+    
+    participant Code as File Code
+    participant File as File System
+    participant BufReader as BufReader
+    participant BufWriter as BufWriter
+    
+    Code->>File: File::open("path.txt")
+    File-->>Code: Result~File, Error~
+    
+    Code->>BufReader: BufReader::new(file)
+    BufReader->>File: Read chunks
+    
+    loop Read Lines
+        BufReader->>BufReader: .lines()
+        BufReader-->>Code: Option~String~
+    end
+    
+    Code->>File: File::create("output.txt")
+    Code->>BufWriter: BufWriter::new(file)
+    BufWriter->>File: Write buffered
+    BufWriter->>File: .flush()

@@ -1,0 +1,29 @@
+classDiagram
+    title Chapter 17: Anyhow and Thiserror
+    
+    class Anyhow {
+        <<crate>>
+        +Result~T~
+        +anyhow!()
+        +context()
+        +bail!()
+    }
+    
+    class Thiserror {
+        <<crate>>
+        +~thiserror~
+        +~error~ derive
+        +Display impl
+    }
+    
+    class AppError {
+        +IO errors
+        +Parse errors
+        +Custom errors
+    }
+    
+    Anyhow --> AppError : For application layer
+    Thiserror --> AppError : For library errors
+    
+    Note over Anyhow: Quick error handling\nDynamic error types
+    Note over Thiserror: Compile-time errors\nStatic error types

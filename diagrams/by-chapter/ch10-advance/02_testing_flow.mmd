@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant Test as Test Function
+    participant Code as Code Under Test
+    participant Assert as assert! macro
+    
+    Test->>Code: Call function
+    Code-->>Test: Return result
+    Test->>Assert: assert!(result == expected)
+    alt Assertion passes
+        Assert-->>Test: Continue
+    else Assertion fails
+        Assert-->>Test: Panic!
+    end
