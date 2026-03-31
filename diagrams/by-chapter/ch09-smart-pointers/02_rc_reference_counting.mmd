@@ -1,52 +1,46 @@
 sequenceDiagram
-    title Chapter 9: Rc Reference Counting Lifecycle
-    
-    participant rc1 as Rc<String>
-    participant rc2 as Rc<String>
-    participant rc3 as Rc<String>
-    participant heap as Heap Data
+    participant rc1 as Rc1
+    participant rc2 as Rc2
+    participant rc3 as Rc3
+    participant heap as Heap
     participant rcbox as RcBox
-    
+
     rc1->>rcbox: Rc::new("hello")
     activate rcbox
     rcbox->>heap: Allocate String
     rcbox->>rcbox: strong_count = 1
     rcbox-->>rc1: Rc with count 1
-    deactivate rcbox
-    
+
     Note over rc1,rcbox: strong_count = 1
-    
-    rc1->>rc2: Rc::clone(&rc1)
-    rc1->>rcbox: Increment count
+
+    rc1->>rcbox: Rc::clone(rc1)
     rcbox->>rcbox: strong_count = 2
     rcbox-->>rc2: Rc with count 2
-    
+
     Note over rc1,rc2: strong_count = 2
-    
-    rc2->>rc3: Rc::clone(&rc2)
-    rc2->>rcbox: Increment count
+
+    rc2->>rcbox: Rc::clone(rc2)
     rcbox->>rcbox: strong_count = 3
     rcbox-->>rc3: Rc with count 3
-    
-    Note over rc1,rc2,rc3,rcbox: strong_count = 3
-    
-    rc1-->>rcbox: Drop rc1
-    rc1->>rcbox: Decrement count
+
+    Note over rc1,rc3: strong_count = 3
+
+    rc1->>rcbox: Drop rc1
     rcbox->>rcbox: strong_count = 2
-    
-    Note over rc2,rc3,rcbox: strong_count = 2, data still alive
-    
-    rc2-->>rcbox: Drop rc2
-    rc2->>rcbox: Decrement count
+    rcbox-->>rc1: rc1 dropped
+
+    Note over rc2,rc3: strong_count = 2
+
+    rc2->>rcbox: Drop rc2
     rcbox->>rcbox: strong_count = 1
-    
-    Note over rc3,rcbox: strong_count = 1, rc3 still owns data
-    
-    rc3-->>rcbox: Drop rc3 (last owner)
-    rc3->>rcbox: Decrement count
+    rcbox-->>rc2: rc2 dropped
+
+    Note over rc3,rcbox: strong_count = 1
+
+    rc3->>rcbox: Drop rc3 (last owner)
     rcbox->>rcbox: strong_count = 0
     rcbox->>heap: Drop String
     rcbox->>rcbox: Deallocate RcBox
     deactivate rcbox
-    
-    Note over rc1,rc2,rc3,heap: All memory freed
+
+    Note over heap,rcbox: All memory freed

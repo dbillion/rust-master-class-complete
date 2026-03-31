@@ -5,9 +5,9 @@ flowchart TD
     
     Visibility -->|private| PrivateScope[Default - private]
     Visibility -->|pub| PubScope[Public]
-    Visibility -->|pubcrate| CrateScope[pub(crate)]
-    Visibility -->|pubsuper| SuperScope[pub(super)]
-    Visibility -->|pubin| InScope[pub(in path)]
+    Visibility -->|"pub(crate)"| CrateScope["pub(crate)"]
+    Visibility -->|"pub(super)"| SuperScope["pub(super)"]
+    Visibility -->|"pub(in path)"| InScope["pub(in path)"]
     
     PrivateScope --> PrivateCheck{Access from?}
     PrivateCheck -->|same module| Allow1[✅ Allow]

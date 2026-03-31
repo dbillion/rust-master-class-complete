@@ -1,10 +1,10 @@
 sequenceDiagram
     participant main as fn main()
-    participant stack as Stack<i32>
-    participant vec as Vec<i32>
-    participant option as Option<i32>
-    
-    Note over main,option: Chapter 5: Stack Push and Pop Operations
+    participant stack as Stack
+    participant vec as Vec
+    participant opt1 as Option
+
+    Note over main,opt1: Stack Push/Pop Operations
     
     main->>stack: let mut stack = Stack::new()
     activate stack
@@ -35,7 +35,7 @@ sequenceDiagram
     activate stack
     stack->>vec: self.items.pop()
     vec-->>stack: Some(20)
-    Note over stack,option: Returns Some(20)
+    Note over stack,opt1: Returns Some(20)
     stack-->>main: Some(20)
     deactivate stack
     

@@ -1,11 +1,9 @@
 classDiagram
-    title Chapter 20: Lifetimes Deep Dive
-    
     class LifetimeAnnotations {
         &'a T
         &'a mut T
-        fn foo~'a~(&'a T)
-        Struct~'a~ { field: &'a T }
+        fn foo(&'a T)
+        Struct<'a>
     }
     
     class LifetimeElision {
@@ -24,4 +22,4 @@ classDiagram
     LifetimeAnnotations --> LifetimeElision : Compiler simplifies
     LifetimeBounds --> LifetimeAnnotations : Constrains lifetimes
     
-    Note over LifetimeAnnotations: Prevents dangling references\nEnsures reference validity
+    Note over LifetimeAnnotations: Prevents dangling references - Ensures reference validity

@@ -1,6 +1,4 @@
 sequenceDiagram
-    title Chapter 23: Drop Check and Drop Order
-    
     participant Main as Main Scope
     participant Var1 as Variable A
     participant Var2 as Variable B
@@ -27,4 +25,4 @@ sequenceDiagram
     Var1-->>Main: Drop called
     deactivate Var1
     
-    Note over Main,Var1: LIFO order\nLast created = First dropped
+    Note over Main,Var1: LIFO order - Last created = First dropped

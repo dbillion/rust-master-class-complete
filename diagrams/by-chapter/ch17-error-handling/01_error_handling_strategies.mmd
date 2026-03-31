@@ -1,7 +1,5 @@
 flowchart TD
-    title Chapter 17: Error Handling Strategies
-    
-    Start([Operation]) --> Result{Result~T,E~}
+    Start([Chapter 17: Operation]) --> Result{Result<T,E>}
     
     Result -->|Ok| Success[Success Path]
     Result -->|Err| Handle{Handle Error}

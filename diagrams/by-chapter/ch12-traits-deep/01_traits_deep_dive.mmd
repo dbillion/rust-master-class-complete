@@ -1,6 +1,4 @@
 classDiagram
-    title Chapter 12: Deep Dive into Traits
-    
     class Trait {
         <<trait>>
         +method1()
@@ -20,7 +18,7 @@ classDiagram
     }
     
     class AssociatedTypes {
-        +trait Container { type Item }
+        trait Container
     }
     
     class SuperTraits {
@@ -32,5 +30,5 @@ classDiagram
         +dyn Trait
     }
     
-    Note over Trait: Shared behavior\nDefault implementations
-    Note over TraitObjects: Dynamic dispatch\nRuntime polymorphism
+    Note over Trait: Shared behavior - Default implementations
+    Note over TraitObjects: Dynamic dispatch - Runtime polymorphism
