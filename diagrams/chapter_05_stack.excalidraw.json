@@ -1,0 +1,237 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "id": "title_bg",
+      "x": 50,
+      "y": 20,
+      "width": 700,
+      "height": 80,
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Chapter 5: Project - Stack Implementation",
+        "fontSize": 24,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "stack_visual",
+      "x": 100,
+      "y": 130,
+      "width": 200,
+      "height": 250,
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "stack_top",
+      "x": 110,
+      "y": 140,
+      "width": 180,
+      "height": 40,
+      "backgroundColor": "#b2f2bb",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Top: 15",
+        "fontSize": 16,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "stack_mid1",
+      "x": 110,
+      "y": 180,
+      "width": 180,
+      "height": 40,
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "10",
+        "fontSize": 16,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "stack_mid2",
+      "x": 110,
+      "y": 220,
+      "width": 180,
+      "height": 40,
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "5",
+        "fontSize": 16,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "stack_bottom",
+      "x": 110,
+      "y": 260,
+      "width": 180,
+      "height": 40,
+      "backgroundColor": "#ffd8a8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Bottom: 1",
+        "fontSize": 16,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "push_arrow",
+      "x": 350,
+      "y": 150,
+      "width": 80,
+      "height": 0,
+      "points": [[0, 0], [80, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "arrow",
+      "id": "pop_arrow",
+      "x": 350,
+      "y": 200,
+      "width": 80,
+      "height": 0,
+      "points": [[0, 0], [80, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "operations_box",
+      "x": 450,
+      "y": 130,
+      "width": 250,
+      "height": 100,
+      "backgroundColor": "#d0bfff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Stack Operations\n• push(item) - Add to top\n• pop() - Remove from top\n• peek() - View top\n• is_empty() - Check",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "impl_box",
+      "x": 450,
+      "y": 260,
+      "width": 250,
+      "height": 100,
+      "backgroundColor": "#c3fae8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Implementation\n• Vec<T> for storage\n• Generics for types\n• Option<T> for pop/peek\n• Error handling",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "lifo_label",
+      "x": 120,
+      "y": 400,
+      "width": 160,
+      "height": 50,
+      "backgroundColor": "#fff3bf",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "LIFO\nLast In, First Out",
+        "fontSize": 16,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "code_example",
+      "x": 200,
+      "y": 480,
+      "width": 500,
+      "height": 120,
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "text",
+      "id": "code_text",
+      "x": 220,
+      "y": 500,
+      "width": 460,
+      "height": 80,
+      "fontSize": 12,
+      "fontFamily": 3,
+      "textAlign": "left",
+      "text": "struct Stack<T> {\n    items: Vec<T>,\n}\n\nimpl<T> Stack<T> {\n    fn push(&mut self, item: T) { self.items.push(item); }\n    fn pop(&mut self) -> Option<T> { self.items.pop() }\n    fn peek(&self) -> Option<&T> { self.items.last() }\n}",
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20,
+    "width": 900,
+    "height": 660
+  },
+  "files": {}
+}

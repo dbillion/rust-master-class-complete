@@ -1,0 +1,232 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "id": "title_bg",
+      "x": 50,
+      "y": 20,
+      "width": 700,
+      "height": 80,
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Chapter 6: Structures, Traits, Generics, Enums",
+        "fontSize": 24,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "struct_box",
+      "x": 50,
+      "y": 120,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "#b2f2bb",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Structs\n• Named fields\n• Tuple structs\n• Unit structs\n• Methods with impl",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "arrow1",
+      "x": 250,
+      "y": 180,
+      "width": 60,
+      "height": 0,
+      "points": [[0, 0], [60, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "traits_box",
+      "x": 310,
+      "y": 120,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "#ffd8a8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Traits\n• Shared behavior\n• Default impls\n• Trait bounds\n• Derive macros",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "arrow2",
+      "x": 510,
+      "y": 180,
+      "width": 60,
+      "height": 0,
+      "points": [[0, 0], [60, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "generics_box",
+      "x": 570,
+      "y": 120,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "#d0bfff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Generics\n• Type parameters\n• <T> syntax\n• Monomorphization\n• Constraints",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "enums_box",
+      "x": 50,
+      "y": 280,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "#ffc9c9",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Enums\n• Variants\n• Associated data\n• Pattern matching\n• Option<T>, Result<T>",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "arrow3",
+      "x": 250,
+      "y": 340,
+      "width": 60,
+      "height": 0,
+      "points": [[0, 0], [60, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "option_box",
+      "x": 310,
+      "y": 280,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "#c3fae8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Option<T>\n• Some(T)\n• None\n• Null safety\n• Combinators",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "arrow4",
+      "x": 510,
+      "y": 340,
+      "width": 60,
+      "height": 0,
+      "points": [[0, 0], [60, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "result_box",
+      "x": 570,
+      "y": 280,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "#fff3bf",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Result<T, E>\n• Ok(T)\n• Err(E)\n• Error handling\n• ? operator",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "code_example",
+      "x": 150,
+      "y": 440,
+      "width": 600,
+      "height": 140,
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "text",
+      "id": "code_text",
+      "x": 170,
+      "y": 460,
+      "width": 560,
+      "height": 100,
+      "fontSize": 12,
+      "fontFamily": 3,
+      "textAlign": "left",
+      "text": "// Struct with generics\nstruct Point<T> { x: T, y: T }\n\n// Trait definition\ntrait Drawable {\n    fn draw(&self);\n    fn render() { println!(\"Rendering\"); }\n}\n\n// Enum with variants\nenum Message {\n    Quit,\n    Move { x: i32, y: i32 },\n    Write(String),\n}",
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20,
+    "width": 900,
+    "height": 640
+  },
+  "files": {}
+}

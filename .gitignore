@@ -1,0 +1,41 @@
+# Rust
+/target/
+**/target/
+**/Target/
+
+# Cargo lock files for examples
+**/Cargo.lock
+
+# Build output
+**/*.rs.bk
+
+# Node
+node_modules/
+
+# Mermaid output (keep source .mmd files)
+diagrams/mermaid/*.svg
+diagrams/mermaid/*.png
+
+# Excalidraw rendered
+diagrams/*.png
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test build artifacts
+**/*.pdb
+**/*.dll
+**/*.exe

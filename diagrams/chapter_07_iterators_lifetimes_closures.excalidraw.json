@@ -1,0 +1,185 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "id": "title_bg",
+      "x": 50,
+      "y": 20,
+      "width": 700,
+      "height": 80,
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Chapter 7: Iterators, Lifetimes, Closures",
+        "fontSize": 24,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "iterators_box",
+      "x": 50,
+      "y": 120,
+      "width": 250,
+      "height": 160,
+      "backgroundColor": "#b2f2bb",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Iterators\n• Iterator trait\n• .iter() / .into_iter()\n• Adapter methods\n• map, filter, fold\n• Lazy evaluation",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "arrow_right",
+      "x": 300,
+      "y": 200,
+      "width": 60,
+      "height": 0,
+      "points": [[0, 0], [60, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "lifetimes_box",
+      "x": 360,
+      "y": 120,
+      "width": 250,
+      "height": 160,
+      "backgroundColor": "#ffd8a8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Lifetimes\n• Reference validity\n• 'a annotation\n• Elision rules\n• Struct lifetimes\n• Prevent dangling refs",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "arrow_right2",
+      "x": 610,
+      "y": 200,
+      "width": 60,
+      "height": 0,
+      "points": [[0, 0], [60, 0]],
+      "endArrowhead": "arrow",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "rectangle",
+      "id": "closures_box",
+      "x": 670,
+      "y": 120,
+      "width": 250,
+      "height": 160,
+      "backgroundColor": "#d0bfff",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "Closures\n• Anonymous functions\n• Capture environment\n• Fn, FnMut, FnOnce\n• Move closures\n• Function pointers",
+        "fontSize": 14,
+        "fontFamily": 1
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "lifetime_visual",
+      "x": 150,
+      "y": 320,
+      "width": 200,
+      "height": 100,
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "'a ──────►\nref valid here",
+        "fontSize": 16,
+        "fontFamily": 3
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "closure_visual",
+      "x": 450,
+      "y": 320,
+      "width": 200,
+      "height": 100,
+      "backgroundColor": "#c3fae8",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100,
+      "label": {
+        "text": "|x| x + 1\ncaptures env",
+        "fontSize": 16,
+        "fontFamily": 3
+      }
+    },
+    {
+      "type": "ellipse",
+      "id": "code_example",
+      "x": 150,
+      "y": 460,
+      "width": 600,
+      "height": 140,
+      "backgroundColor": "#f8f9fa",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    },
+    {
+      "type": "text",
+      "id": "code_text",
+      "x": 170,
+      "y": 480,
+      "width": 560,
+      "height": 100,
+      "fontSize": 12,
+      "fontFamily": 3,
+      "textAlign": "left",
+      "text": "// Iterator chain\nlet sum: i32 = vec![1,2,3].iter()\n    .filter(|&&x| x > 1)\n    .map(|&x| x * 2)\n    .sum();\n\n// Lifetime annotation\nfn longest<'a>(x: &'a str, y: &'a str) -> &'a str\n\n// Closure with capture\nlet adder = |x: i32| x + captured_val;",
+      "strokeColor": "#1e1e1e",
+      "roughness": 0,
+      "opacity": 100
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20,
+    "width": 1020,
+    "height": 660
+  },
+  "files": {}
+}
