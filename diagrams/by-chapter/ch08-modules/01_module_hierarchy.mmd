@@ -1,0 +1,36 @@
+erDiagram
+    title Chapter 8: Rust Module System Hierarchy
+    
+    CRATE ||--o{ MODULE : contains
+    MODULE ||--o{ SUBMODULE : nested
+    MODULE ||--o{ ITEM : exports
+    
+    CRATE {
+        string name PK
+        string type "lib or main"
+        string edition "2021"
+        string manifest "Cargo.toml"
+    }
+    
+    MODULE {
+        string visibility "pub or private"
+        string path "crate::module::submodule"
+        string file "mod.rs or name.rs"
+        string parent "parent module path"
+    }
+    
+    SUBMODULE {
+        string parent_path
+        int depth "nesting level"
+        string visibility
+    }
+    
+    ITEM {
+        string kind "fn/struct/trait/enum/const/static"
+        string visibility "pub/pub(crate)/pub(super)/private"
+        string name
+        string re_export "pub use"
+    }
+    
+    MODULE ||--|{ ITEM : defines
+    SUBMODULE }|--|| MODULE : belongs_to

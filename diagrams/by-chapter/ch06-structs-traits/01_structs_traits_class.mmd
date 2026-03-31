@@ -1,0 +1,35 @@
+classDiagram
+    title Rust Structs and Traits
+    
+    class Shape {
+        +String color
+        +f64 area
+        +calculateArea()* f64
+        +describe() String
+    }
+    
+    class Rectangle {
+        +f64 width
+        +f64 height
+        +new(w, h) Rectangle
+        +area() f64
+        +perimeter() f64
+    }
+    
+    class Circle {
+        +f64 radius
+        +new(r) Circle
+        +area() f64
+        +circumference() f64
+    }
+    
+    class Drawable {
+        <<interface>>
+        +draw()*
+        +render()
+    }
+    
+    Shape <|-- Rectangle : inherits
+    Shape <|-- Circle : inherits
+    Drawable <|.. Rectangle : implements
+    Drawable <|.. Circle : implements

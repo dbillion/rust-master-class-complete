@@ -1,0 +1,38 @@
+C4Container
+    title Chapter 24: Blockchain Project - Container Diagram
+    
+    Person(miner, "Miner", "User who creates new blocks")
+    Person(user, "User", "User who adds transactions")
+    
+    Container_Boundary(blockchain_app, "Blockchain Application") {
+        Container(main_rs, "main.rs", "Rust", "CLI entry point and menu")
+        Container(blockchain_mod, "blockchain.rs", "Rust Module", "Blockchain struct with Vec<Block>")
+        Container(block_mod, "block.rs", "Rust Module", "Block struct with hash calculation")
+        Container(hash_mod, "hash.rs", "Rust Module", "SHA256 hashing utilities")
+        Container(miner_worker, "miner.rs", "Rust Module", "Mining worker (proof of work)")
+    }
+    
+    SystemDb(std_lib, "Rust Std Lib", "System", "String, Vec, u64")
+    SystemDb(sha2, "sha2 Crate", "External", "SHA256 hash algorithm")
+    
+    Rel(miner, main_rs, "Uses", "CLI commands")
+    Rel(user, main_rs, "Uses", "Add blocks")
+    Rel(main_rs, blockchain_mod, "Manages", "Vec<Block>")
+    Rel(blockchain_mod, block_mod, "Contains", "Vec<Block>")
+    Rel(block_mod, hash_mod, "Uses", "calculate_hash()")
+    Rel(hash_mod, sha2, "Imports", "Sha256::digest()")
+    Rel(miner_worker, hash_mod, "Uses", "Brute force hash")
+    Rel(block_mod, std_lib, "Uses", "String, u64")
+    Rel(miner_worker, block_mod, "Updates", "block.nonce")
+    
+    UpdateElementStyle(miner, $fontColor="#1e40af", $bgColor="#b2f2bb")
+    UpdateElementStyle(user, $fontColor="#1e40af", $bgColor="#b2f2bb")
+    UpdateElementStyle(main_rs, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(blockchain_mod, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(block_mod, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(hash_mod, $fontColor="#1e40af", $bgColor="#ffd8a8")
+    UpdateElementStyle(miner_worker, $fontColor="#1e40af", $bgColor="#fef3c7")
+    UpdateElementStyle(sha2, $fontColor="#1e40af", $bgColor="#ffc9c9")
+    
+    UpdateRelStyle(miner, main_rs, $textColor="#1e40af", $offsetY="-30")
+    UpdateRelStyle(blockchain_mod, block_mod, $textColor="#1e40af", $offsetX="40")

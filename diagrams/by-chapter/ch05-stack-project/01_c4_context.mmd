@@ -1,0 +1,22 @@
+C4Context
+    title Chapter 5: Stack Project - System Context Diagram
+    
+    Person(developer, "Developer", "Rust programmer using the Stack library")
+    System(stack_lib, "Stack Library", "Rust crate", "Generic LIFO data structure implementation")
+    SystemDb(std_lib, "Rust Standard Library", "System", "Vec<T>, Option<T>, String types")
+    System_Ext(cargo, "Cargo", "Build tool", "Package management and compilation")
+    
+    Rel(developer, stack_lib, "Uses", "cargo add, import")
+    Rel(stack_lib, std_lib, "Depends on", "Vec<T> for storage, Option<T> for pop/peek")
+    Rel(developer, cargo, "Executes", "cargo build, cargo test")
+    Rel(cargo, stack_lib, "Builds", "Compiles crate")
+    
+    UpdateElementStyle(developer, $fontColor="#1e40af", $bgColor="#b2f2bb")
+    UpdateElementStyle(stack_lib, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(std_lib, $fontColor="#1e40af", $bgColor="#ffd8a8")
+    UpdateElementStyle(cargo, $fontColor="#1e40af", $bgColor="#fef3c7")
+    
+    UpdateRelStyle(developer, stack_lib, $textColor="#1e40af", $offsetY="-30")
+    UpdateRelStyle(stack_lib, std_lib, $textColor="#1e40af", $offsetY="30")
+    UpdateRelStyle(developer, cargo, $textColor="#1e40af", $offsetX="-40")
+    UpdateRelStyle(cargo, stack_lib, $textColor="#1e40af", $offsetX="40")

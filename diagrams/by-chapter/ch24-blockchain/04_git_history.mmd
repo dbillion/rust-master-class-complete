@@ -1,0 +1,19 @@
+gitGraph
+    commit id: "Initial commit"
+    commit id: "Add Block struct"
+    commit id: "Add hash calculation"
+    branch feature-blockchain
+    checkout feature-blockchain
+    commit id: "Add Blockchain struct"
+    commit id: "Add verify chain"
+    branch feature-mining
+    checkout feature-mining
+    commit id: "Add proof of work"
+    commit id: "Add difficulty"
+    checkout feature-blockchain
+    merge feature-mining
+    commit id: "Add CLI interface"
+    checkout main
+    merge feature-blockchain
+    commit id: "Add tests"
+    commit id: "Update README"

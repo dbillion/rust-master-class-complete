@@ -1,0 +1,36 @@
+sequenceDiagram
+    title Chapter 3: Borrowing and References
+    
+    participant owner as Owner String
+    participant borrower as &T (Immutable)
+    participant mut_borrower as &mut T (Mutable)
+    
+    owner->>owner: let mut s = String::from("hello")
+    
+    Note over owner: Owner has full access
+    
+    owner->>borrower: let r1 = &s
+    activate borrower
+    borrower->>borrower: Can read s
+    borrower-->>owner: Returns &String
+    Note over owner,borrower: Multiple immutable borrows OK
+    
+    owner->>borrower: let r2 = &s
+    activate borrower
+    borrower-->>owner: Returns &String
+    
+    owner->>mut_borrower: let r3 = &mut s
+    Note over owner,mut_borrower: ERROR! Cannot borrow as mutable
+    
+    borrower-->>owner: Drop r1, r2
+    deactivate borrower
+    borrower-->>owner: Drop r2
+    
+    owner->>mut_borrower: let r3 = &mut s
+    activate mut_borrower
+    mut_borrower->>mut_borrower: Can modify s
+    mut_borrower-->>owner: Returns &mut String
+    Note over mut_borrower: Only one mutable borrow
+    
+    mut_borrower-->>owner: Drop r3
+    deactivate mut_borrower

@@ -1,0 +1,61 @@
+sequenceDiagram
+    title Chapter 14: MPSC Channel Communication
+    
+    participant producer1 as Producer Thread 1
+    participant producer2 as Producer Thread 2
+    participant tx as mpsc::Sender
+    participant rx as mpsc::Receiver
+    participant channel as Channel Queue
+    participant consumer as Consumer Thread
+    
+    producer1->>tx: tx.send("msg1")
+    activate tx
+    tx->>channel: Push to queue
+    tx-->>producer1: Ok(())
+    deactivate tx
+    
+    producer2->>tx: tx.send("msg2")
+    activate tx
+    tx->>channel: Push to queue
+    tx-->>producer2: Ok(())
+    deactivate tx
+    
+    Note over channel: Queue: ["msg1", "msg2"]
+    
+    consumer->>rx: rx.recv()
+    activate rx
+    rx->>channel: Pop from queue
+    channel-->>rx: Some("msg1")
+    rx-->>consumer: Ok("msg1")
+    deactivate rx
+    
+    consumer->>rx: rx.recv()
+    activate rx
+    rx->>channel: Pop from queue
+    channel-->>rx: Some("msg2")
+    rx-->>consumer: Ok("msg2")
+    deactivate rx
+    
+    Note over producer1,consumer: Multiple producers, single consumer
+    
+    producer1->>tx: tx.send("msg3")
+    activate tx
+    tx->>channel: Push to queue
+    tx-->>producer1: Ok(())
+    deactivate tx
+    
+    consumer->>rx: rx.try_recv()
+    activate rx
+    rx->>channel: Try pop (non-blocking)
+    channel-->>rx: Some("msg3")
+    rx-->>consumer: Ok("msg3")
+    deactivate rx
+    
+    consumer->>rx: rx.recv_timeout(1s)
+    activate rx
+    rx->>channel: Wait with timeout
+    channel-->>rx: None (empty)
+    rx-->>consumer: Timeout
+    deactivate rx
+    
+    Note over producer1,consumer: Channel closed when all tx dropped

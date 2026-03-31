@@ -1,0 +1,46 @@
+flowchart TD
+    title Chapter 4: Pattern Matching Flow
+    
+    MatchExpr[match expression] --> PatternCheck{Pattern Match?}
+    
+    PatternCheck -->|pattern 1: literal| LitMatch[Literal Match]
+    PatternCheck -->|pattern 2: variable| VarMatch[Variable Binding]
+    PatternCheck -->|pattern 3: struct| StructMatch[Struct Destructure]
+    PatternCheck -->|pattern 4: enum| EnumMatch[Enum Variant]
+    PatternCheck -->|pattern 5: tuple| TupleMatch[Tuple Destructure]
+    PatternCheck -->|pattern 6: reference| RefMatch[Reference Match]
+    PatternCheck -->|pattern 7: slice| SliceMatch[Slice Match]
+    PatternCheck -->|_ wildcard| WildcardMatch[Wildcard _]
+    
+    LitMatch --> GuardCheck1{if guard?}
+    VarMatch --> GuardCheck2{if guard?}
+    StructMatch --> GuardCheck3{if guard?}
+    EnumMatch --> GuardCheck4{if guard?}
+    
+    GuardCheck1 -->|true| Execute1[Execute arm 1]
+    GuardCheck1 -->|false| NextPattern1[Next pattern]
+    
+    GuardCheck2 -->|true| Execute2[Execute arm 2]
+    GuardCheck2 -->|false| NextPattern2[Next pattern]
+    
+    GuardCheck3 -->|true| Execute3[Execute arm 3]
+    GuardCheck3 -->|false| NextPattern3[Next pattern]
+    
+    GuardCheck4 -->|true| Execute4[Execute arm 4]
+    GuardCheck4 -->|false| NextPattern4[Next pattern]
+    
+    Execute1 --> ReturnValue[Return value]
+    Execute2 --> ReturnValue
+    Execute3 --> ReturnValue
+    Execute4 --> ReturnValue
+    WildcardMatch --> ReturnValue
+    
+    NextPattern1 --> PatternCheck
+    NextPattern2 --> PatternCheck
+    NextPattern3 --> PatternCheck
+    NextPattern4 --> PatternCheck
+    
+    style MatchExpr fill:#a5d8ff
+    style PatternCheck fill:#fef3c7
+    style ReturnValue fill:#b2f2bb
+    style WildcardMatch fill:#ffc9c9

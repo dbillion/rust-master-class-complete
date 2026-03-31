@@ -1,0 +1,26 @@
+flowchart TD
+    title[Chapter 2: Basic Programming Flow]
+    
+    Start([Start Program]) --> Declare[let mut x = 15]
+    Declare --> Constant[const MAX: u32 = 100]
+    Constant --> DataType{Data Type?}
+    
+    DataType -->|Integer i32| IntOp[x + 10]
+    DataType -->|Float f64| FloatOp[x as f64 + 3.14]
+    DataType -->|String| StringOp[format! macro]
+    
+    IntOp --> Print[println! macro]
+    FloatOp --> Print
+    StringOp --> Print
+    
+    Print --> Input{User Input?}
+    Input -->|Yes| ReadLine[std::io::stdin]
+    Input -->|No| End([End Program])
+    
+    ReadLine --> Parse[trim.parse]
+    Parse --> Print
+    
+    style Start fill:#b2f2bb
+    style End fill:#b2f2bb
+    style DataType fill:#fef3c7
+    style Input fill:#fef3c7

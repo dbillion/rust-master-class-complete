@@ -1,0 +1,30 @@
+sequenceDiagram
+    title Chapter 2: Function Calls and Parameters
+    
+    participant main as fn main()
+    participant greet as fn greet(name)
+    participant add as fn add(x, y)
+    participant println as println! macro
+    
+    main->>main: let name = "Alice"
+    main->>greet: greet(name)
+    
+    activate greet
+    greet->>println: println!("Hello, {}!", name)
+    println-->>greet: Output
+    greet-->>main: ()
+    deactivate greet
+    
+    main->>main: let x = 5, y = 10
+    main->>add: add(x, y)
+    
+    activate add
+    add->>add: x + y
+    add-->>main: i32 result
+    deactivate add
+    
+    main->>main: let result = add(x, y)
+    main->>println: println!("Result: {}", result)
+    
+    Note over main,println: Functions return values
+    Note over main,println: No semicolon = return

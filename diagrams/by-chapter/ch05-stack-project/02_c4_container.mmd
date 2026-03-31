@@ -1,0 +1,34 @@
+C4Container
+    title Chapter 5: Stack Project - Container Diagram
+    
+    Person(developer, "Developer", "Rust programmer")
+    
+    Container_Boundary(stack_crate, "Stack Crate") {
+        Container(main_rs, "main.rs", "Rust", "Application entry point and demo code")
+        Container(stack_mod, "stack.rs", "Rust Module", "Stack<T> struct definition")
+        Container(impl_mod, "impl.rs", "Rust Module", "Method implementations")
+        Container(tests, "tests/", "Rust Tests", "Unit and integration tests")
+    }
+    
+    SystemDb(vec, "Vec<T>", "Standard Library", "Dynamic array storage")
+    SystemDb(option, "Option<T>", "Standard Library", "None/Some for empty check")
+    
+    Rel(developer, main_rs, "Executes", "cargo run")
+    Rel(main_rs, stack_mod, "Imports", "mod stack")
+    Rel(stack_mod, impl_mod, "Uses", "impl methods")
+    Rel(stack_mod, vec, "Contains", "items: Vec<T>")
+    Rel(impl_mod, option, "Returns", "Option<T> from pop/peek")
+    Rel(tests, stack_mod, "Tests", "unit tests")
+    Rel(tests, impl_mod, "Tests", "method tests")
+    
+    UpdateElementStyle(developer, $fontColor="#1e40af", $bgColor="#b2f2bb")
+    UpdateElementStyle(main_rs, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(stack_mod, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(impl_mod, $fontColor="#1e40af", $bgColor="#a5d8ff")
+    UpdateElementStyle(tests, $fontColor="#1e40af", $bgColor="#ffd8a8")
+    UpdateElementStyle(vec, $fontColor="#1e40af", $bgColor="#fef3c7")
+    UpdateElementStyle(option, $fontColor="#1e40af", $bgColor="#fef3c7")
+    
+    UpdateRelStyle(developer, main_rs, $textColor="#1e40af", $offsetY="-20")
+    UpdateRelStyle(main_rs, stack_mod, $textColor="#1e40af", $offsetX="30")
+    UpdateRelStyle(stack_mod, vec, $textColor="#1e40af", $offsetY="30")

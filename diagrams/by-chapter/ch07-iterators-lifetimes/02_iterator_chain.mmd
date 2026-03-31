@@ -1,0 +1,63 @@
+sequenceDiagram
+    title Chapter 7: Iterator Chain Operations
+    
+    participant main as fn main()
+    participant vec as Vec<i32>
+    participant iter as Iterator
+    participant map as map()
+    participant filter as filter()
+    participant fold as fold()
+    
+    main->>vec: let numbers = vec![1, 2, 3, 4, 5]
+    vec-->>main: Vec<i32>
+    
+    main->>vec: numbers.iter()
+    vec-->>main: Iterator<Item=&i32>
+    
+    Note over main,iter: Iterator is lazy - nothing happens yet
+    
+    main->>iter: .map(|&x| x * 2)
+    iter-->>main: Map Iterator (lazy)
+    
+    main->>map: .filter(|&x| x > 5)
+    map-->>main: Filter Iterator (lazy)
+    
+    main->>filter: .fold(0, |acc, x| acc + x)
+    
+    Note over main,fold: Now iteration happens!
+    
+    fold->>iter: next()
+    iter-->>fold: Some(&1)
+    fold->>fold: map: 1 * 2 = 2
+    fold->>fold: filter: 2 > 5? false
+    fold->>fold: Skip this item
+    
+    fold->>iter: next()
+    iter-->>fold: Some(&2)
+    fold->>fold: map: 2 * 2 = 4
+    fold->>fold: filter: 4 > 5? false
+    fold->>fold: Skip this item
+    
+    fold->>iter: next()
+    iter-->>fold: Some(&3)
+    fold->>fold: map: 3 * 2 = 6
+    fold->>fold: filter: 6 > 5? true
+    fold->>fold: acc = 0 + 6 = 6
+    
+    fold->>iter: next()
+    iter-->>fold: Some(&4)
+    fold->>fold: map: 4 * 2 = 8
+    fold->>fold: filter: 8 > 5? true
+    fold->>fold: acc = 6 + 8 = 14
+    
+    fold->>iter: next()
+    iter-->>fold: Some(&5)
+    fold->>fold: map: 5 * 2 = 10
+    fold->>fold: filter: 10 > 5? true
+    fold->>fold: acc = 14 + 10 = 24
+    
+    fold->>iter: next()
+    iter-->>fold: None
+    fold-->>main: 24
+    
+    Note over main,fold: Result: 24 (sum of 6+8+10)

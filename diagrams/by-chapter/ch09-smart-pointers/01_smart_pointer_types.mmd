@@ -1,0 +1,63 @@
+classDiagram
+    title Chapter 9: Smart Pointer Types and Traits
+    
+    class Box~T~ {
+        <<smart pointer>>
+        -pointer: *mut T
+        +new(value: T) Box~T~
+        +deref() &T
+        +deref_mut() &mut T
+    }
+    
+    class Rc~T~ {
+        <<smart pointer>>
+        -pointer: *mut RcBox~T~
+        -strong_count: usize
+        -weak_count: usize
+        +new(value: T) Rc~T~
+        +clone() Rc~T~
+        +strong_count() usize
+        +weak_count() usize
+    }
+    
+    class RefCell~T~ {
+        <<smart pointer>>
+        -value: T
+        -borrow_flag: isize
+        +new(value: T) RefCell~T~
+        +borrow() Ref~T~
+        +borrow_mut() RefMut~T~
+        +into_inner() T
+    }
+    
+    class Arc~T~ {
+        <<smart pointer>>
+        -pointer: *mut ArcBox~T~
+        -strong_count: atomic usize
+        -weak_count: atomic usize
+        +new(value: T) Arc~T~
+        +clone() Arc~T~
+    }
+    
+    class Mutex~T~ {
+        <<smart pointer>>
+        -data: T
+        -locked: atomic bool
+        +new(value: T) Mutex~T~
+        +lock() MutexGuard~T~
+        +into_inner() T
+    }
+    
+    class Weak~T~ {
+        <<smart pointer>>
+        -pointer: *mut RcBox~T~
+        +upgrade() Option~Rc~T~~
+        +strong_count() usize
+    }
+    
+    Note over Box~T~: Single ownership, heap allocation
+    Note over Rc~T~: Reference counting, single-threaded
+    Note over RefCell~T~: Interior mutability, runtime borrow check
+    Note over Arc~T~: Atomic reference counting, thread-safe
+    Note over Mutex~T~: Mutual exclusion, thread-safe
+    Note over Weak~T~: Non-owning reference, breaks cycles

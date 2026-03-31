@@ -1,0 +1,49 @@
+flowchart TD
+    title Chapter 4: Control Flow Decision Tree
+    
+    Start([Start]) --> IfCheck{if condition}
+    
+    IfCheck -->|true| IfBlock[Execute if block]
+    IfCheck -->|false| ElseCheck{else if?}
+    
+    ElseCheck -->|true| ElseIfBlock[Execute else if block]
+    ElseCheck -->|false| ElseBlock[Execute else block]
+    
+    IfBlock --> MatchExpr{match value}
+    ElseIfBlock --> MatchExpr
+    ElseBlock --> MatchExpr
+    
+    MatchExpr -->|pattern 1| Action1[Execute arm 1]
+    MatchExpr -->|pattern 2| Action2[Execute arm 2]
+    MatchExpr -->|pattern n| ActionN[Execute arm n]
+    MatchExpr -->|_ wildcard| Default[Execute default arm]
+    
+    Action1 --> Loop{loop type?}
+    Action2 --> Loop
+    ActionN --> Loop
+    Default --> Loop
+    
+    Loop -->|loop| LoopInf[infinite loop]
+    Loop -->|while| LoopWhile[while condition]
+    Loop -->|for| LoopFor[for item in iterator]
+    
+    LoopInf --> LoopBody[Execute body]
+    LoopWhile -->|true| LoopBody
+    LoopFor --> LoopBody
+    
+    LoopBody --> Break{break?}
+    Break -->|yes| End([End])
+    Break -->|no| Continue{continue?}
+    
+    Continue -->|yes| Loop
+    Continue -->|no| LoopBody
+    
+    LoopWhenFalse --> End
+    
+    style Start fill:#b2f2bb
+    style End fill:#b2f2bb
+    style IfCheck fill:#fef3c7
+    style ElseCheck fill:#fef3c7
+    style MatchExpr fill:#fef3c7
+    style Loop fill:#fef3c7
+    style Break fill:#fef3c7

@@ -1,0 +1,38 @@
+classDiagram
+    title Chapter 2: Rust Data Types
+    
+    class ScalarTypes {
+        <<Types>>
+        +Integers: i8, i16, i32, i64, i128
+        +Unsigned: u8, u16, u32, u64, u128
+        +Floats: f32, f64
+        +Boolean: bool
+        +Character: char
+    }
+    
+    class CompoundTypes {
+        <<Types>>
+        +Tuple: (i32, f64, String)
+        +Array: [i32; 5]
+        +Vector: Vec~i32~
+        +String: String, &str
+    }
+    
+    class Variables {
+        +let x = 5
+        +let mut y = 10
+        +const MAX: u32
+        +shadowing
+    }
+    
+    class Functions {
+        +fn main()
+        +fn greet(name: &str)
+        +fn add(x: i32, y: i32) -> i32
+        +println!()
+    }
+    
+    Variables --> ScalarTypes : uses types
+    Variables --> CompoundTypes : uses types
+    Functions --> ScalarTypes : returns types
+    Functions --> CompoundTypes : returns types

@@ -1,0 +1,39 @@
+C4Component
+    title Chapter 5: Stack Project - Component Diagram
+    
+    Container_Boundary(stack_module, "stack.rs Module") {
+        Component(stack_struct, "Stack<T>", "struct", "Generic stack with Vec<T> storage")
+        Component(push_method, "push(item: T)", "method", "Adds item to top of stack")
+        Component(pop_method, "pop()", "method", "Removes and returns top item")
+        Component(peek_method, "peek()", "method", "Views top item without removing")
+        Component(is_empty, "is_empty()", "method", "Checks if stack is empty")
+        Component(len_method, "len()", "method", "Returns stack size")
+    }
+    
+    Container_Boundary(vec_storage, "Vec<T> Storage") {
+        Component(vec_push, "push()", "std method", "Add to end of vector")
+        Component(vec_pop, "pop()", "std method", "Remove from end")
+        Component(vec_last, "last()", "std method", "View last element")
+        Component(vec_len, "len()", "std method", "Get vector length")
+    }
+    
+    Rel(push_method, stack_struct, "modifies", "self.items")
+    Rel(pop_method, stack_struct, "returns", "Option<T>")
+    Rel(peek_method, stack_struct, "borrows", "&self")
+    Rel(is_empty, stack_struct, "checks", "self.items.is_empty()")
+    Rel(len_method, stack_struct, "returns", "self.items.len()")
+    
+    Rel(push_method, vec_push, "calls", "self.items.push(item)")
+    Rel(pop_method, vec_pop, "calls", "self.items.pop()")
+    Rel(peek_method, vec_last, "calls", "self.items.last()")
+    Rel(is_empty, vec_len, "uses", "len() == 0")
+    Rel(len_method, vec_len, "calls", "self.items.len()")
+    
+    UpdateElementStyle(stack_struct, $fontColor="#1e40af", $bgColor="#a5d8ff", $borderColor="#1e3a5f")
+    UpdateElementStyle(push_method, $fontColor="#1e40af", $bgColor="#b2f2bb")
+    UpdateElementStyle(pop_method, $fontColor="#1e40af", $bgColor="#ffd8a8")
+    UpdateElementStyle(peek_method, $fontColor="#1e40af", $bgColor="#fef3c7")
+    UpdateElementStyle(vec_push, $fontColor="#1e40af", $bgColor="#ffc9c9")
+    
+    UpdateRelStyle(push_method, stack_struct, $textColor="#1e40af", $offsetY="-20")
+    UpdateRelStyle(pop_method, stack_struct, $textColor="#1e40af", $offsetX="30")

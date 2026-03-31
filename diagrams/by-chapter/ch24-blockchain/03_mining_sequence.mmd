@@ -1,0 +1,50 @@
+sequenceDiagram
+    title Chapter 24: Block Mining Sequence (Proof of Work)
+    
+    participant miner as Miner
+    participant blockchain as Blockchain
+    participant block as Block (new)
+    participant hash_util as HashUtil
+    participant latest as Latest Block
+    
+    miner->>blockchain: add_block("transaction data")
+    activate blockchain
+    blockchain->>latest: get_latest()
+    latest-->>blockchain: &Block (hash: "abc123")
+    
+    blockchain->>block: Block::new(index, data, prev_hash)
+    activate block
+    block->>block: index = chain.len()
+    block->>block: timestamp = now()
+    block->>block: previous_hash = "abc123"
+    block->>block: nonce = 0
+    block-->>blockchain: New Block (unmined)
+    deactivate block
+    
+    blockchain->>block: mine_block(difficulty: 4)
+    
+    loop Mining Loop (Brute Force)
+        block->>hash_util: calculate_hash()
+        activate hash_util
+        hash_util->>hash_util: SHA256(index + timestamp + data + prev_hash + nonce)
+        hash_util-->>block: hash: "xyz789..."
+        deactivate hash_util
+        
+        block->>block: Check: hash.starts_with("0000")?
+        
+        alt Hash valid (starts with 0000)
+            block->>block: Mining complete!
+            block-->>blockchain: Mined Block
+        else Hash invalid
+            block->>block: nonce += 1
+            block-->>block: Try again
+        end
+    end
+    
+    block-->>blockchain: Block with valid hash
+    deactivate block
+    
+    blockchain->>blockchain: push block to Vec<Block>
+    blockchain-->>miner: Block added successfully
+    
+    Note over miner,latest: Difficulty = number of leading zeros\nHigher difficulty = harder to mine

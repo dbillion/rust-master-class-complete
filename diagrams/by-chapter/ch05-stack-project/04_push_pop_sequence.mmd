@@ -1,0 +1,75 @@
+sequenceDiagram
+    title Chapter 5: Stack Push and Pop Operations
+    
+    participant main as fn main()
+    participant stack as Stack<i32>
+    participant vec as Vec<i32>
+    participant option as Option<i32>
+    
+    main->>stack: let mut stack = Stack::new()
+    activate stack
+    stack->>vec: Vec::new()
+    vec-->>stack: Empty vector
+    stack-->>main: Stack { items: [] }
+    deactivate stack
+    
+    Note over main,stack: Stack created with empty Vec
+    
+    main->>stack: stack.push(10)
+    activate stack
+    stack->>vec: self.items.push(10)
+    vec-->>stack: ()
+    stack-->>main: ()
+    deactivate stack
+    
+    main->>stack: stack.push(20)
+    activate stack
+    stack->>vec: self.items.push(20)
+    vec-->>stack: ()
+    stack-->>main: ()
+    deactivate stack
+    
+    Note over main,stack: Stack: [10, 20] (20 is top)
+    
+    main->>stack: stack.pop()
+    activate stack
+    stack->>vec: self.items.pop()
+    vec-->>stack: Some(20)
+    stack->>option: Some(20)
+    option-->>stack: Some(20)
+    stack-->>main: Some(20)
+    deactivate stack
+    
+    Note over main,stack: Popped 20, Stack: [10]
+    
+    main->>stack: stack.peek()
+    activate stack
+    stack->>vec: self.items.last()
+    vec-->>stack: Some(&10)
+    stack-->>main: Some(&10)
+    deactivate stack
+    
+    Note over main,stack: Peeked 10, Stack unchanged: [10]
+    
+    main->>stack: stack.is_empty()
+    activate stack
+    stack->>vec: self.items.is_empty()
+    vec-->>stack: false
+    stack-->>main: false
+    deactivate stack
+    
+    main->>stack: stack.pop()
+    activate stack
+    stack->>vec: self.items.pop()
+    vec-->>stack: Some(10)
+    stack-->>main: Some(10)
+    deactivate stack
+    
+    main->>stack: stack.pop()
+    activate stack
+    stack->>vec: self.items.pop()
+    vec-->>stack: None
+    stack-->>main: None
+    deactivate stack
+    
+    Note over main,stack: Stack is empty, returns None

@@ -1,0 +1,65 @@
+flowchart TD
+    title Chapter 8: Visibility and Access Control Flow
+    
+    Start([Define Item]) --> Visibility{Visibility?}
+    
+    Visibility -->|private| PrivateScope[Default - private]
+    Visibility -->|pub| PubScope[Public]
+    Visibility -->|pubcrate| CrateScope[pub(crate)]
+    Visibility -->|pubsuper| SuperScope[pub(super)]
+    Visibility -->|pubin| InScope[pub(in path)]
+    
+    PrivateScope --> PrivateCheck{Access from?}
+    PrivateCheck -->|same module| Allow1[✅ Allow]
+    PrivateCheck -->|child module| Allow2[✅ Allow]
+    PrivateCheck -->|external| Deny1[❌ Deny]
+    
+    PubScope --> PubCheck{Access from?}
+    PubCheck -->|anywhere| Allow3[✅ Allow]
+    
+    CrateScope --> CrateCheck{Access from?}
+    CrateCheck -->|same crate| Allow4[✅ Allow]
+    CrateCheck -->|external crate| Deny2[❌ Deny]
+    
+    SuperScope --> SuperCheck{Access from?}
+    SuperCheck -->|parent module| Allow5[✅ Allow]
+    SuperCheck -->|sibling module| Allow6[✅ Allow via parent]
+    SuperCheck -->|external| Deny3[❌ Deny]
+    
+    InScope --> InCheck{Access from?}
+    InCheck -->|in specified path| Allow7[✅ Allow]
+    InCheck -->|outside path| Deny4[❌ Deny]
+    
+    Allow1 --> End([End])
+    Allow2 --> End
+    Deny1 --> End
+    Allow3 --> End
+    Allow4 --> End
+    Deny2 --> End
+    Allow5 --> End
+    Allow6 --> End
+    Deny3 --> End
+    Allow7 --> End
+    Deny4 --> End
+    
+    style Start fill:#b2f2bb
+    style End fill:#b2f2bb
+    style Visibility fill:#fef3c7
+    style PrivateCheck fill:#fef3c7
+    style PubCheck fill:#fef3c7
+    style CrateCheck fill:#fef3c7
+    style SuperCheck fill:#fef3c7
+    style InCheck fill:#fef3c7
+    
+    style Allow1 fill:#b2f2bb
+    style Allow2 fill:#b2f2bb
+    style Allow3 fill:#b2f2bb
+    style Allow4 fill:#b2f2bb
+    style Allow5 fill:#b2f2bb
+    style Allow6 fill:#b2f2bb
+    style Allow7 fill:#b2f2bb
+    
+    style Deny1 fill:#ffc9c9
+    style Deny2 fill:#ffc9c9
+    style Deny3 fill:#ffc9c9
+    style Deny4 fill:#ffc9c9

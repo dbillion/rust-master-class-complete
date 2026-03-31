@@ -1,0 +1,46 @@
+sequenceDiagram
+    title Chapter 14: Thread Spawn and Join
+    
+    participant main as Main Thread
+    participant t1 as Thread 1
+    participant t2 as Thread 2
+    participant handle1 as JoinHandle1
+    participant handle2 as JoinHandle2
+    
+    main->>main: let v = vec![1, 2, 3]
+    
+    Note over main,t1: Spawning threads
+    
+    main->>t1: thread::spawn(|| { ... })
+    activate t1
+    t1->>t1: Execute closure
+    t1->>handle1: JoinHandle returned
+    handle1-->>main: handle1
+    
+    main->>t2: thread::spawn(|| { ... })
+    activate t2
+    t2->>t2: Execute closure
+    t2->>handle2: JoinHandle returned
+    handle2-->>main: handle2
+    
+    Note over main,t1,t2: Both threads running concurrently
+    
+    main->>t1: handle1.join()
+    t1->>t1: Continue execution
+    t1->>t1: Complete work
+    t1-->>main: Result<()>
+    deactivate t1
+    
+    Note over main,t2: Thread 1 joined, Thread 2 still running
+    
+    main->>t2: handle2.join()
+    t2->>t2: Continue execution
+    t2->>t2: Complete work
+    t2-->>main: Result<()>
+    deactivate t2
+    
+    Note over main,t1,t2: Both threads completed
+    
+    main->>main: Continue after both threads
+    
+    Note over main,t1,t2: move keyword transfers ownership to thread

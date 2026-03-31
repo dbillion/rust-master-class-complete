@@ -1,0 +1,40 @@
+classDiagram
+    title Chapter 24: Blockchain and Block Class Structure
+    
+    class Blockchain {
+        -blocks: Vec~Block~
+        -difficulty: u32
+        +new() Blockchain
+        +add_block(data: String)
+        +mine_block(block: &mut Block)
+        +verify() bool
+        +get_latest() &Block
+        +get_chain() &Vec~Block~
+    }
+    
+    class Block {
+        -index: u64
+        -timestamp: u64
+        -data: String
+        -previous_hash: String
+        -hash: String
+        -nonce: u64
+        +new(index: u64, data: String, prev_hash: String) Block
+        +calculate_hash() String
+        +mine(difficulty: u32)
+        +verify() bool
+    }
+    
+    class HashUtil {
+        +sha256(data: &str) String
+        +hash_with_nonce(data: &str, nonce: u64) String
+        +verify(hash: &str, data: &str) bool
+    }
+    
+    Blockchain "1" *-- "many" Block : contains (Vec)
+    Block --> HashUtil : uses for hashing
+    Blockchain --> HashUtil : uses for verification
+    
+    Note over Blockchain: Maintains chain of blocks\nValidates proof of work
+    Note over Block: Contains data, hash, prev_hash\nMined with nonce
+    Note over HashUtil: SHA256 cryptographic hash\nDeterministic output
