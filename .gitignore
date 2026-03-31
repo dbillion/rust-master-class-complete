@@ -12,10 +12,14 @@
 # Node
 node_modules/
 
-# Mermaid (keep source .mmd files, exclude rendered images)
+# Mermaid (keep source .mmd files, exclude rendered images in mermaid/ legacy folder)
 diagrams/mermaid/*.svg
 diagrams/mermaid/*.png
 diagrams/mermaid/*.jpg
+
+# Allow SVG/PNG in by-chapter folder (organized diagrams)
+!diagrams/by-chapter/**/*.svg
+!diagrams/by-chapter/**/*.png
 
 # Excalidraw rendered
 diagrams/*.png
