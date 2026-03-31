@@ -12,9 +12,10 @@
 # Node
 node_modules/
 
-# Mermaid output (keep source .mmd files)
+# Mermaid (keep source .mmd files, exclude rendered images)
 diagrams/mermaid/*.svg
 diagrams/mermaid/*.png
+diagrams/mermaid/*.jpg
 
 # Excalidraw rendered
 diagrams/*.png

@@ -1,0 +1,19 @@
+sequenceDiagram
+    title Rust Ownership Flow
+    
+    participant s1 as String s1
+    participant s2 as String s2
+    participant heap as Heap Memory
+    
+    s1->>heap: String::from("hello")
+    Note over s1,heap: s1 owns data
+    
+    s1->>s2: s2 = s1 (MOVE)
+    Note over s1: INVALIDATED!
+    Note over s2: Now owns
+    
+    s2->>s2: use s2
+    Note over s2: Valid access
+    
+    s2-->>heap: drop()
+    Note over heap: Memory freed
