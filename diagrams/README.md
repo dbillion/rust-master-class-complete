@@ -19,10 +19,23 @@ Comprehensive Mermaid diagrams organized by chapter for the Rust Programming Mas
 | **07** | Iterators & Lifetimes | 2 diagrams | [`ch07-iterators-lifetimes/`](./by-chapter/ch07-iterators-lifetimes/) |
 | **08** | Modules | 2 diagrams | [`ch08-modules/`](./by-chapter/ch08-modules/) |
 | **09** | Smart Pointers | 2 diagrams | [`ch09-smart-pointers/`](./by-chapter/ch09-smart-pointers/) |
+| **10** | Advance Techniques | 3 diagrams | [`ch10-advance/`](./by-chapter/ch10-advance/) |
+| **11** | Real Life Application | 2 diagrams | [`ch11-real-life/`](./by-chapter/ch11-real-life/) |
+| **12** | Deep Dive into Traits | 1 diagram | [`ch12-traits-deep/`](./by-chapter/ch12-traits-deep/) |
+| **13** | Efficient Programming | 1 diagram | [`ch13-efficient/`](./by-chapter/ch13-efficient/) |
 | **14** | Concurrency | 3 diagrams | [`ch14-concurrency/`](./by-chapter/ch14-concurrency/) |
+| **15** | Text & File Handling | 1 diagram | [`ch15-text-file/`](./by-chapter/ch15-text-file/) |
+| **16** | Sized & Unsized Types | 1 diagram | [`ch16-sized-unsized/`](./by-chapter/ch16-sized-unsized/) |
+| **17** | Error Handling | 2 diagrams | [`ch17-error-handling/`](./by-chapter/ch17-error-handling/) |
+| **18** | References Deep Dive | 1 diagram | [`ch18-references/`](./by-chapter/ch18-references/) |
+| **19** | Coercion | 1 diagram | [`ch19-coercion/`](./by-chapter/ch19-coercion/) |
+| **20** | Lifetimes Deep Dive | 1 diagram | [`ch20-lifetimes-deep/`](./by-chapter/ch20-lifetimes-deep/) |
+| **21** | Advanced Traits | 1 diagram | [`ch21-traits/`](./by-chapter/ch21-traits/) |
+| **22** | Downcasting | 1 diagram | [`ch22-downcasting/`](./by-chapter/ch22-downcasting/) |
+| **23** | Dropcheck | 1 diagram | [`ch23-dropcheck/`](./by-chapter/ch23-dropcheck/) |
 | **24** | Blockchain ⭐ | 4 diagrams (C4) | [`ch24-blockchain/`](./by-chapter/ch24-blockchain/) |
 
-**TOTAL: 29 diagrams across 11 chapters**
+**TOTAL: 46 diagrams across 24 chapters (100% coverage!)**
 
 ---
 
@@ -84,14 +97,13 @@ diagrams/
 | Type | Count | Best For | Example |
 |------|-------|----------|---------|
 | **C4 Diagrams** | 6 | Project architecture | Ch05 Stack, Ch24 Blockchain |
-| **Sequence** | 9 | Ownership, borrowing, function calls | Ch03, Ch07, Ch14 |
-| **Class** | 6 | Structs, traits, enums, generics | Ch06, Ch09, Ch24 |
-| **Flowchart** | 5 | Control flow, decision trees | Ch02, Ch04, Ch08 |
+| **Sequence** | 15 | Ownership, borrowing, function calls, drop order | Ch03, Ch05, Ch07, Ch09, Ch14, Ch15, Ch22, Ch23 |
+| **Class** | 10 | Structs, traits, enums, generics, lifetimes | Ch06, Ch09, Ch12, Ch16, Ch17, Ch19, Ch20, Ch21, Ch24 |
+| **Flowchart** | 13 | Control flow, decision trees, error handling | Ch02, Ch04, Ch08, Ch10, Ch11, Ch13, Ch17, Ch18 |
 | **Timeline** | 1 | Lifetimes | Ch07 |
 | **Mindmap** | 1 | Concept organization | Ch14 |
-| **ER Diagram** | 1 | Module hierarchy | Ch08 |
 | **Git Graph** | 2 | Project history | Ch00, Ch24 |
-| **TOTAL** | **31** | All chapters | - |
+| **TOTAL** | **46** | All 24 chapters | 100% coverage |
 
 ---
 
@@ -226,9 +238,28 @@ sequenceDiagram
 - [MERMAID_CLI_CREATED.md](./mermaid/MERMAID_CLI_CREATED.md) - Original Mermaid CLI guide
 - [ALL_MERMAID_DIAGRAMS.md](../ALL_MERMAID_DIAGRAMS.md) - Complete diagram catalog
 - [C4_ARCHITECTURE_PROJECTS.md](../C4_ARCHITECTURE_PROJECTS.md) - C4 diagram guide
+- [LESSONS_LEARNED.md](./LESSONS_LEARNED.md) - ⭐ **Mermaid syntax pitfalls and how to avoid them**
 
 ---
 
-**Last Updated:** March 31, 2026  
-**Total Diagrams:** 29  
-**Chapters Covered:** 11/25 (all major topics)
+## 🎓 Lessons Learned
+
+After generating all 46 diagrams, we documented **8 common syntax errors** and their fixes:
+
+1. ❌ **Invalid `title` statement** → Use first node for context
+2. ❌ **Edge label syntax** → Labels come after target node
+3. ❌ **Reserved keywords** → Avoid `option`, `opt`, `main` as participant names
+4. ❌ **Special characters** → Wrap in quotes: `"pub(crate)"`
+5. ❌ **Nested braces in class members** → Simplify complex signatures
+6. ❌ **Multi-participant notes** → Max 2 participants per note
+7. ❌ **Activate/deactivate mismatch** → Let Mermaid handle automatically
+8. ❌ **Newline escapes** → Use dashes instead of `\n`
+
+**See:** [`LESSONS_LEARNED.md`](./LESSONS_LEARNED.md) for complete guide with examples.
+
+---
+
+**Last Updated:** March 31, 2026
+**Total Diagrams:** 46
+**Chapters Covered:** 24/24 (100% coverage!)
+**Status:** ✅ All .mmd files have matching .svg renders
