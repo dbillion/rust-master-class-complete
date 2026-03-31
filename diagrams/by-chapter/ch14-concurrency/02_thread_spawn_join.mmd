@@ -23,7 +23,7 @@ sequenceDiagram
     t2->>handle2: JoinHandle returned
     handle2-->>main: handle2
     
-    Note over main,t1,t2: Both threads running concurrently
+    Note over main,t1: Both threads running concurrently
     
     main->>t1: handle1.join()
     t1->>t1: Continue execution
@@ -39,8 +39,8 @@ sequenceDiagram
     t2-->>main: Result<()>
     deactivate t2
     
-    Note over main,t1,t2: Both threads completed
+    Note over main,t1: Both threads completed
     
     main->>main: Continue after both threads
     
-    Note over main,t1,t2: move keyword transfers ownership to thread
+    Note over main,t1: move keyword transfers ownership to thread

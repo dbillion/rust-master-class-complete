@@ -1,27 +1,25 @@
-blockDiagram
-    title Chapter 3: Stack vs Heap Memory Layout
+flowchart LR
+    subgraph stack["Stack Memory (Fast)"]
+        direction TB
+        stack_frame["Stack Frame"]
+        ptr["ptr: address"]
+        len["len: 8"]
+        cap["capacity: 8"]
+    end
     
-    block:stack["Stack Memory (Fast, Fixed Size)"]
-        stack_frame["Stack Frame (main)"]
-        stack_frame --> ptr["ptr: *mut T (address)"]
-        stack_frame --> len["len: 8"]
-        stack_frame --> cap["capacity: 8"]
+    subgraph heap["Heap Memory (Dynamic)"]
+        direction TB
+        heap_data["String: 'hello'"]
+    end
     
-    block:heap["Heap Memory (Flexible, Dynamic)"]
-        heap_data["String Data: 'hello'"]
-        heap_data --> heap_chars["h e l l o \\0"]
+    stack --x points to : heap
     
-    stack --x heap : points to
+    subgraph owner["Owner"]
+        owner_var["String Variable"]
+    end
     
-    block:ownership["Ownership Model"]
-        owner["Owner Variable"]
-        owner -.-> ptr
-        owner --> note1["Dropped when\nout of scope"]
+    owner_var -.-> ptr
     
-    classDef stackStyle fill:#b2f2bb,stroke:#047857
-    classDef heapStyle fill:#ffd8a8,stroke:#c2410c
-    classDef ownerStyle fill:#a5d8ff,stroke:#1e40af
-    
-    class stack,stack_frame stackStyle
-    class heap,heap_data heapStyle
-    class owner,ptr ownerStyle
+    style stack fill:#b2f2bb,stroke:#047857
+    style heap fill:#ffd8a8,stroke:#c2410c
+    style owner fill:#a5d8ff,stroke:#1e40af

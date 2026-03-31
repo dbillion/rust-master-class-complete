@@ -21,7 +21,7 @@ sequenceDiagram
     rcbox->>rcbox: strong_count = 2
     rcbox-->>rc2: Rc with count 2
     
-    Note over rc1,rc2,rcbox: strong_count = 2
+    Note over rc1,rc2: strong_count = 2
     
     rc2->>rc3: Rc::clone(&rc2)
     rc2->>rcbox: Increment count
